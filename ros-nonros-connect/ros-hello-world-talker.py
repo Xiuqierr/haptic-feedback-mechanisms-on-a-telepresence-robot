@@ -2,7 +2,7 @@ import time
 
 import roslibpy
 
-client = roslibpy.Ros(host='localhost', port=9090)
+client = roslibpy.Ros(host='10.204.94.55', port=9090)
 client.run()
 
 talker = roslibpy.Topic(client, '/chatter', 'std_msgs/String')
