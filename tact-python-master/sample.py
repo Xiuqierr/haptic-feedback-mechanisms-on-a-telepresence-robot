@@ -6,6 +6,7 @@ player = haptic_player.HapticPlayer()
 sleep(0.4)
 
 # tact file can be exported from bhaptics designer
+'''
 print("register CenterX")
 player.register("CenterX", "CenterX.tact")
 print("register Circle")
@@ -25,10 +26,15 @@ player.submit_registered_with_option("Circle", "alt2",
                                      rotation_option={"offsetAngleX": 0, "offsetY": 0})
 sleep(3)
 
-interval = 0.5
+'''
+interval = 5
 durationMillis = 100
 
 for i in range(20):
+    print(i, "back")
+    player.submit_dot("backFrame", "VestBack", [{"index": i, "intensity": 20}], durationMillis)
+    sleep(interval)
+
     print(i, "back")
     player.submit_dot("backFrame", "VestBack", [{"index": i, "intensity": 100}], durationMillis)
     sleep(interval)
@@ -36,4 +42,5 @@ for i in range(20):
     print(i, "front")
     player.submit_dot("frontFrame", "VestFront", [{"index": i, "intensity": 100}], durationMillis)
     sleep(interval)
+  
 
