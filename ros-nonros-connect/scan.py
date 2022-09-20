@@ -25,21 +25,8 @@ class RobotControl():
         rospy.spin()
 
     def onscan(self,scandata):
-        '''
-        Callback for scan data
-        '''
-        '''
-        print "0"
-        print scandata.ranges[0]
-        print "90"
-        print scandata.ranges[90]
-        print "180"
-        print scandata.ranges[180]
-        print "270"
-        print scandata.ranges[270]
-        '''
         max_val = np.zeros(8)
-        max_val[0] = max(self.scan_region(scandata,0,23),self.scan_region(scandata,338,359))
+        max_val[0] = min(self.scan_region(scandata,0,23),self.scan_region(scandata,338,359))
         max_val[1] = self.scan_region(scandata,23,68)
         max_val[2] = self.scan_region(scandata,68,113)
         max_val[3] = self.scan_region(scandata,113,158)
@@ -48,9 +35,11 @@ class RobotControl():
         max_val[6] = self.scan_region(scandata,248,293)
         max_val[7] = self.scan_region(scandata,293,338)
 
+        array = []
         for i in range(0,8):
-            print(i)
-            print(max_val[i])
+            array.append(max_val[i])
+
+        print(array)
 
         self.region_value = max_val
         self.publisher()
@@ -64,10 +53,11 @@ class RobotControl():
 
 
     def scan_region(self,scandata,minv,maxv):
-        max_val = scandata.ranges[minv]
+        max_val = self.threshold
         for i in range(minv,maxv):
-            max_val = min(scandata.ranges[i],max_val)
-        if(max_val>self.threshold):
+            if(scandata.ranges[i] > 0):
+                max_val = min(scandata.ranges[i],max_val)
+        if(max_val==self.threshold):
             max_val=0.0
         return max_val
 
