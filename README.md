@@ -3,10 +3,10 @@
 ## Introduction
 This project is to build haptic feedback mechanisms with a turtlebot. It consists of two parts:
 
-1. ROS and Non-ROS system connection (ros-nonros-connect)
+1. Turtlebot controller
 
 
-2. Haptic Vest Controller (tact-python-master)
+2. Vest controller
 
 ## Project Aim
 
