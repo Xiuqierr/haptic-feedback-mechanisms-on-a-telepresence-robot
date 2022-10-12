@@ -1,1 +1,0 @@
-# haptic-feedback-mechanisms-on-a-telepresence-robot
