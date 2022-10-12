@@ -41,9 +41,9 @@ def scan_region_vibrate(player,region,distance):
             print(5)
             player.submit_dot("backFrame", "VestBack", [{"index": 15, "intensity": 10/d}], durationMillis)
 
-client = roslibpy.Ros(host='10.204.94.55', port=9090)
+#client = roslibpy.Ros(host='10.204.94.55', port=9090)
 #client = roslibpy.Ros(host='192.168.0.111', port=9090)
-#client = roslibpy.Ros(host='10.148.189.138', port=9090)
+client = roslibpy.Ros(host='10.148.189.138', port=9090)
 client.run()
 
 listener = roslibpy.Topic(client, '/chatter', 'std_msgs/Float64MultiArray')
