@@ -10,38 +10,6 @@ def vest():
     sleep(0.4)
     return player
 
-def scan_region_vibrate(player,region,distance):
-    durationMillis = 1
-    d = distance
-    if(distance>0):
-        if(distance<0.1):
-            d = 0.1
-        if region==0:
-            print(0)
-            player.submit_dot("frontFrame", "VestFront", [{"index": 5, "intensity": 10/d}], durationMillis)
-        if region==1:
-            print(1)
-            player.submit_dot("frontFrame", "VestFront", [{"index": 4, "intensity": 10/d}], durationMillis)
-        if region==6:
-            print(6)
-            player.submit_dot("frontFrame", "VestFront", [{"index": 7, "intensity": 10/d}], durationMillis)
-        if region==7:
-            print(7)
-            player.submit_dot("frontFrame", "VestFront", [{"index": 6, "intensity": 10/d}], durationMillis)
-        if region==2:
-            print(2)
-            player.submit_dot("backFrame", "VestBack", [{"index": 12, "intensity": 10/d}], durationMillis)
-        if region==3:
-            print(3)
-            player.submit_dot("backFrame", "VestBack", [{"index": 13, "intensity": 10/d}], durationMillis)
-        if region==4:
-            print(4)
-            player.submit_dot("backFrame", "VestBack", [{"index": 14, "intensity": 10/d}], durationMillis)
-        if region==5:
-            print(5)
-            player.submit_dot("backFrame", "VestBack", [{"index": 15, "intensity": 10/d}], durationMillis)
-
-
 #The host address needs to be replaced with the name or IP address of the ROS bridge host
 client = roslibpy.Ros(host='10.204.94.55', port=9090)
 client.run()
@@ -113,6 +81,8 @@ try:
 
 except KeyboardInterrupt:
 
+'''
+    Show the function graph of time/distance, time/intensity and distance/intensity
     ax1=plt.subplot(3,1,1)
 
     x = []
@@ -124,15 +94,10 @@ except KeyboardInterrupt:
         x.append(i)
 
     plt.plot(x,y_distance)
-    #plt.xlabel('Time')
-    #plt.ylabel('Distance at position 0')
     ax2=plt.subplot(3,1,2)
     plt.plot(x,y_intensity)
-    #plt.xlabel('Time')
-    #plt.ylabel('Intensity at position 0')
     ax3=plt.subplot(3,1,3)
     plt.plot(y_distance,y_intensity)
-    #plt.xlabel('Distance at position 0')
-    #plt.ylabel('Intensity at position 0')
     plt.show()
+'''
     client.terminate()
